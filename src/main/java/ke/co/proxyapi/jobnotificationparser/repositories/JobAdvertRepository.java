@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface JobAdvertRepository extends PagingAndSortingRepository<JobAdvertModel, Long>
 {
 	Optional<JobAdvertModel> findByUrlHash(String hash);
+
+	void deleteAllByCreatedAtLessThan(Long createdAt);
 }

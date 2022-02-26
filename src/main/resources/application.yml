@@ -17,7 +17,6 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQL95Dialect
     database: postgresql
 
-
 logging:
   level:
     root: INFO
@@ -31,7 +30,7 @@ app:
     fetch-size: 10
     host: ${parser_mail_hostname}
     port: 993
-    unseen: "false"
+    unseen: "true"
     debug: "false"
     search-term-from: "peter@peternjeru.co.ke"
 

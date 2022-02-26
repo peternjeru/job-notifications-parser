@@ -95,5 +95,12 @@ public class EmailParser implements Processor
 			advert = jobAdvertRepository.save(advert);
 			template.asyncSendBody("direct:telegram", advert);
 		}
+
+		//delete anything older than a month
+		executorService.submit(() ->
+		{
+			long oldCreatedAt = Instant.now().getEpochSecond() - 2628000;
+			jobAdvertRepository.deleteAllByCreatedAtLessThan(oldCreatedAt);
+		});
 	}
 }
