@@ -1,0 +1,46 @@
+server:
+  servlet:
+    context-path: /parser
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${parser_db_url}
+    username: ${parser_db_username}
+    password: ${parser_db_password}
+
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQL95Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+    database: postgresql
+
+
+logging:
+  level:
+    root: INFO
+
+app:
+  mail:
+    poll-delay: 300000
+    connection-timeout-millis: 30000
+    username: ${parser_mail_username}
+    password: ${parser_mail_password}
+    fetch-size: 10
+    host: ${parser_mail_hostname}
+    port: 993
+    unseen: "false"
+    debug: "false"
+    search-term-from: "peter@peternjeru.co.ke"
+
+  telegram:
+    api-url: "https://api.telegram.org"
+    api-method: "sendMessage"
+    token: ${parser_tg_api_token}
+    chat-id: ${parser_tg_chat_id}  # e.g. "@coding_horror_ke"
+
+  http:
+    connect-timeout: 30000
+    read-timeout: 60000
