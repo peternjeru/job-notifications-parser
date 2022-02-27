@@ -23,7 +23,7 @@ logging:
 
 app:
   mail:
-    poll-delay: 300000
+    poll-delay: 3600000
     connection-timeout-millis: 30000
     username: ${parser_mail_username}
     password: ${parser_mail_password}
