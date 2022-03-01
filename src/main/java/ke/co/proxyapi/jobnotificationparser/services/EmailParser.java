@@ -37,8 +37,8 @@ public class EmailParser implements Processor
 	@Autowired
 	private ProducerTemplate template;
 
-	@Value("${app.mail.search-term-from}")
-	private String searchTerm;
+	@Value("${app.mail.search-terms}")
+	private String[] searchTerms;
 
 	@Override
 	public void process(Exchange exchange) throws Exception
@@ -59,7 +59,18 @@ public class EmailParser implements Processor
 
 	private void parseEmail(String from, String body)
 	{
-		if (!from.contains(searchTerm))
+		log.info("Curr Email: " + from);
+		boolean contains = false;
+		for (String term : searchTerms)
+		{
+			if (from.contains(term))
+			{
+				contains = true;
+				break;
+			}
+		}
+
+		if (!contains)
 		{
 			return;
 		}
@@ -82,8 +93,7 @@ public class EmailParser implements Processor
 		}
 
 		String urlStr = url.getScheme() + "://" + url.getHost() + url.getPath();
-		log.info("URL: " + urlStr);
-
+		log.info("Found URL: " + urlStr);
 		String hash = StringUtils.hashString(urlStr);
 		Optional<JobAdvertModel> byUrlHash = jobAdvertRepository.findByUrlHash(hash);
 		if (byUrlHash.isEmpty())

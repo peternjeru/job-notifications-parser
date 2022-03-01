@@ -48,6 +48,7 @@ public class JobParserRouter extends RouteBuilder
 				+ "?username=" + username
 				+ "&password=" + password
 				+ "&delay=" + pollDelay
+				+ "&initialDelay=0"
 				+ "&fetchSize=" + fetchSize
 				+ "&connectionTimeout=" + connectionTimeoutMillis
 				+ "&debugMode=" + debug
@@ -58,7 +59,7 @@ public class JobParserRouter extends RouteBuilder
 				.end();
 
 		from("direct:telegram")
-				.throttle(1)    //no. of requests...
+				.throttle(1)    //this no. of requests...
 				.timePeriodMillis(5000)             //...per this time period
 				.process(telegramService);
 	}
