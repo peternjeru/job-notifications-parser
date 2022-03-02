@@ -27,7 +27,7 @@ app:
     connection-timeout-millis: 30000
     username: ${parser_mail_username}
     password: ${parser_mail_password}
-    fetch-size: 20
+    fetch-size: 5
     host: ${parser_mail_hostname}
     port: 993
     unseen: "false"
