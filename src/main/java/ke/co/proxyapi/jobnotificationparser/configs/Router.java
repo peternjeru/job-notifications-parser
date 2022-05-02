@@ -1,6 +1,6 @@
-package ke.co.proxyapi.jobnotificationparser.services;
+package ke.co.proxyapi.jobnotificationparser.configs;
 
-import ke.co.proxyapi.jobnotificationparser.configs.RoutesConfig;
+import ke.co.proxyapi.jobnotificationparser.services.JobsCleaner;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

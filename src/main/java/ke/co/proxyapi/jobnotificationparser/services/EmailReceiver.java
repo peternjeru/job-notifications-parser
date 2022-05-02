@@ -18,7 +18,7 @@ import java.nio.charset.StandardCharsets;
 
 @Service
 @Slf4j
-public class EmailParser implements Processor
+public class EmailReceiver implements Processor
 {
 	@Autowired
 	private ProducerTemplate template;

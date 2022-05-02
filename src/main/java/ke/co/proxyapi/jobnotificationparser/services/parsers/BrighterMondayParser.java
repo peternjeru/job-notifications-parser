@@ -1,15 +1,13 @@
-package ke.co.proxyapi.jobnotificationparser.services;
+package ke.co.proxyapi.jobnotificationparser.services.parsers;
 
 import com.linkedin.urls.Url;
 import com.linkedin.urls.detection.UrlDetector;
 import com.linkedin.urls.detection.UrlDetectorOptions;
 import ke.co.proxyapi.jobnotificationparser.dtos.EmailDto;
-import ke.co.proxyapi.jobnotificationparser.repositories.JobAdvertRepository;
 import ke.co.proxyapi.jobnotificationparser.utils.AppUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.apache.camel.ProducerTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +22,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class BrighterMondayParser implements Processor
 {
-	@Autowired
-	private JobAdvertRepository jobAdvertRepository;
-
-	@Autowired
-	private ProducerTemplate template;
-
 	@Autowired
 	private ExecutorService executorService;
 

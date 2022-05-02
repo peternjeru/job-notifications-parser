@@ -28,12 +28,12 @@ app:
     connection-timeout-millis: 30000
     username: ${parser_mail_username}
     password: ${parser_mail_password}
-    fetch-size: 10
+    fetch-size: 20
     host: ${parser_mail_hostname}
     port: 993
     unseen: "false"
     debug: "false"
-    search-terms: "peter@peternjeru.co.ke,jobalerts-noreply@linkedin.com,support@brightermonday.co.ke"
+    search-terms: "peter@peternjeru.co.ke,jobalerts-noreply@linkedin.com,support@brightermonday.co.ke,njeru.peter555@gmail.com"
 
   telegram:
     api-url: "https://api.telegram.org"

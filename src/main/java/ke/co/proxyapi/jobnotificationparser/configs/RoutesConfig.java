@@ -1,9 +1,9 @@
 package ke.co.proxyapi.jobnotificationparser.configs;
 
 import ke.co.proxyapi.jobnotificationparser.dtos.RouteDto;
-import ke.co.proxyapi.jobnotificationparser.services.BrighterMondayParser;
-import ke.co.proxyapi.jobnotificationparser.services.EmailParser;
-import ke.co.proxyapi.jobnotificationparser.services.LinkedInParser;
+import ke.co.proxyapi.jobnotificationparser.services.parsers.BrighterMondayParser;
+import ke.co.proxyapi.jobnotificationparser.services.EmailReceiver;
+import ke.co.proxyapi.jobnotificationparser.services.parsers.LinkedInParser;
 import ke.co.proxyapi.jobnotificationparser.services.TelegramService;
 import lombok.Getter;
 import org.apache.camel.Processor;
@@ -21,7 +21,7 @@ import java.util.Map;
 public class RoutesConfig
 {
 	@Autowired
-	private EmailParser emailParser;
+	private EmailReceiver emailReceiver;
 
 	@Autowired
 	private TelegramService telegramService;
@@ -94,7 +94,7 @@ public class RoutesConfig
 				+ "&searchTerm.unseen=" + unseen
 				+ "&unseen=" + unseen;
 
-		addRoute(url, emailParser, null, null);
+		addRoute(url, emailReceiver, null, null);
 	}
 
 	private void addTelegramRoute()

@@ -1,4 +1,4 @@
-package ke.co.proxyapi.jobnotificationparser.services;
+package ke.co.proxyapi.jobnotificationparser.services.parsers;
 
 import com.linkedin.urls.Url;
 import com.linkedin.urls.detection.UrlDetector;

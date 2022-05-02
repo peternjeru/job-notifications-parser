@@ -18,7 +18,7 @@ public class TelegramService implements Processor
 	private Gson gson;
 
 	@Autowired
-	private HttpHandler httpHandler;
+	private HttpService httpService;
 
 	@Value("${app.telegram.api-url}")
 	private String tgApiUrl;
@@ -47,7 +47,7 @@ public class TelegramService implements Processor
 
 		try
 		{
-			String response = httpHandler.process(url, requestJson);
+			String response = httpService.post(url, requestJson);
 			log.info("Response:\n" + response);
 		}
 		catch (RuntimeException exception)
