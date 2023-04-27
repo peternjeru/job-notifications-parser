@@ -46,7 +46,7 @@ public class LinkedInParser implements Processor
 			return;
 		}
 
-		String urlStr = url.getScheme() + "://" + url.getHost() + url.getPath();
+		String urlStr = url.getScheme() + "://" + url.getHost() + url.getPath().replaceAll("/comm", "");
 		appUtils.sendToTelegram(urlStr);
 	}
 }
