@@ -59,7 +59,7 @@ public class AppUtils
 		if (description == null) {
 			return false;
 		}
-		return isSpamDescription(description, "spam_words.txt");
+		return isSpamDescription(description);
 	}
 	public static String getMetaDescription(String url) {
 		try {
@@ -67,7 +67,7 @@ public class AppUtils
 			Elements metaTags = doc.getElementsByTag("meta");
 			for (Element metaTag : metaTags) {
 				String tagName = metaTag.attr("name");
-				if (tagName.equalsIgnoreCase("description")) {
+				if (tagName.equalsIgnoreCase("og:title")) {
 					return metaTag.attr("content");
 				}
 			}
@@ -75,8 +75,8 @@ public class AppUtils
 		}
 		return null;
 	}
-	public static boolean isSpamDescription(String description, String spamWordsFilePath) {
-		String[] spamWords = readSpamWordsFromFile(spamWordsFilePath);
+	public static boolean isSpamDescription(String description) {
+		String[] spamWords = readSpamWordsFromFile();
 
 		for (String spamWord : spamWords) {
 			Pattern pattern = Pattern.compile(spamWord, Pattern.CASE_INSENSITIVE| Pattern.LITERAL | Pattern.MULTILINE | Pattern.DOTALL);
@@ -87,11 +87,10 @@ public class AppUtils
 		}
 		return false;
 	}
-	private static String[] readSpamWordsFromFile(String spamWordsFilePath) {
-		//read spam words from resources/blacklist.json
+	private static String[] readSpamWordsFromFile() {
 		try
 		{
-			ClassPathResource res = new ClassPathResource(spamWordsFilePath);
+			ClassPathResource res = new ClassPathResource("spam_words.txt");
 			File file = new File(res.getPath());
 			String content = new String(Files.readAllBytes(file.toPath()));
 			//split by new line and space. remove empty strings
